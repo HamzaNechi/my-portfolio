@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hamza NECHI | Ingénieur Full-Stack Mobile</title>
+    <meta name="description"
+        content="Portfolio de Hamza NECHI, Ingénieur Full-Stack Mobile spécialisé en Flutter et Laravel. Découvrez mes projets et compétences.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#hero" class="logo">HN<span class="dot">.</span></a>
+            <button class="mobile-menu-btn" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links">
+                <li><a href="#about">À propos</a></li>
+                <li><a href="#skills">Compétences</a></li>
+                <li><a href="#projects">Projets</a></li>
+                <li><a href="#experience">Expérience</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact" class="btn-nav">Me Contacter</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="container hero-content">
+            <span class="greeting">Bonjour, je suis</span>
+            <h1 class="hero-name">Hamza NECHI</h1>
+            <h2 class="hero-role">Ingénieur Full-Stack Mobile <span class="highlight">Flutter & Laravel</span></h2>
+            <p class="hero-intro">
+                Ingénieur Full-Stack spécialisé dans le développement d’applications mobiles et web performantes, avec
+                une expertise approfondie en Flutter et Laravel, et une forte orientation vers les solutions digitales à
+                impact métier.
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">Voir mes projets</a>
+                <a href="#contact" class="btn btn-outline">Me contacter</a>
+            </div>
+        </div>
+        <div class="hero-background"></div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="section">
+        <div class="container about-container">
+            <div class="about-image">
+                <div class="about-frame">
+                    <div class="frame-content">
+                        <img src="assets/profile.jpg" alt="Hamza NECHI">
+                    </div>
+                    <div class="frame-backdrop"></div>
+                </div>
+            </div>
+            <div class="about-text">
+                <h2 class="section-title">À propos <span class="highlight-alt">de moi</span></h2>
+                <div class="about-content">
+                    <p>Ingénieur en systèmes informatiques et mobiles avec plus de trois ans d’expérience en
+                        développement full-stack web et mobile.</p>
+                    <p>Je conçois des applications robustes, sécurisées et évolutives en m’appuyant sur des
+                        architectures propres, des bonnes pratiques de développement et une forte exigence de qualité.
+                    </p>
+                    <p>Mon expérience couvre des projets complexes intégrant authentification sécurisée, paiements en
+                        ligne, messagerie temps réel, notifications push et visioconférence, notamment dans le domaine
+                        de la santé numérique.</p>
+                </div>
+
+                <!-- Career Objective in About or separate? Request said separate section, will keep separate but maybe reference here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section bg-alt">
+        <div class="container">
+            <h2 class="section-title text-center">Compétences Techniques</h2>
+            <div class="skills-grid">
+
+                <!-- Languages -->
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-code"></i></div>
+                    <h3>Langages</h3>
+                    <div class="skill-tags">
+                        <span>Dart</span>
+                        <span>PHP</span>
+                        <span>Java</span>
+                        <span>Kotlin</span>
+                        <span>Swift</span>
+                        <span>JavaScript</span>
+                        <span>TypeScript</span>
+                        <span>Python</span>
+                    </div>
+                </div>
+
+                <!-- Frameworks -->
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-layer-group"></i></div>
+                    <h3>Frameworks</h3>
+                    <div class="skill-tags">
+                        <span>Flutter</span>
+                        <span>Laravel</span>
+                        <span>Spring Boot</span>
+                        <span>Express.js</span>
+                        <span>Angular</span>
+                        <span>AngularJS</span>
+                    </div>
+                </div>
+
+                <!-- Databases -->
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-database"></i></div>
+                    <h3>Bases de données</h3>
+                    <div class="skill-tags">
+                        <span>MySQL</span>
+                        <span>SQL Server</span>
+                        <span>MongoDB</span>
+                        <span>Firebase Firestore</span>
+                    </div>
+                </div>
+
+                <!-- Tools -->
+                <div class="skill-card">
+                    <div class="skill-icon"><i class="fa-solid fa-toolbox"></i></div>
+                    <h3>Outils & Plateformes</h3>
+                    <div class="skill-tags">
+                        <span>Firebase (Auth, FCM, OTP)</span>
+                        <span>Docker</span>
+                        <span>Git</span>
+                        <span>GitHub</span>
+                        <span>Stripe</span>
+                        <span>Google Maps API</span>
+                        <span>Jitsi Meet</span>
+                        <span>Postman</span>
+                        <span>Jira</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <h2 class="section-title text-center">Projets Réalisés</h2>
+            <div class="projects-grid">
+
+                <!-- Project 1 -->
+                <article class="project-card">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>WIC Doctor</h3>
+                            <span class="project-type">Santé Connectée</span>
+                        </div>
+                        <p>Plateforme complète de santé en ligne incluant prise de rendez-vous, notifications,
+                            messagerie temps réel, paiement en ligne et consultations vidéo.</p>
+                        <div class="project-links">
+                            <a href="#" class="link-item"><i class="fa-brands fa-github"></i> GitHub</a>
+                            <a href="#" class="link-item"><i class="fa-brands fa-google-play"></i> Play Store</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-card">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>eGRS – Gestion STEG</h3>
+                            <span class="project-type">Web & Mobile</span>
+                        </div>
+                        <p>Solution de suivi de la consommation électrique avec détection OCR des index et alertes
+                            intelligentes.</p>
+                        <div class="project-links">
+                            <a href="#" class="link-item"><i class="fa-brands fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Billet de faveur</h3>
+                            <span class="project-type">TUNISAIR Backend</span>
+                        </div>
+                        <p>Backend sécurisé pour la réservation de billets d’avion avec API REST, JWT et intégration du
+                            paiement en ligne.</p>
+                        <div class="project-links">
+                            <a href="#" class="link-item"><i class="fa-brands fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 4 -->
+                <article class="project-card">
+                    <div class="project-content">
+                        <div class="project-header">
+                            <h3>Student Chat</h3>
+                            <span class="project-type">Social Mobile</span>
+                        </div>
+                        <p>Application mobile de réseau social étudiant avec messagerie temps réel, authentification
+                            sécurisée et OCR.</p>
+                        <div class="project-links">
+                            <a href="#" class="link-item"><i class="fa-brands fa-github"></i> GitHub</a>
+                        </div>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section bg-alt">
+        <div class="container">
+            <h2 class="section-title text-center">Expérience Professionnelle</h2>
+            <div class="timeline">
+
+                <!-- Exp 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2025</div>
+                        <h3 class="timeline-role">Ingénieur Full-Stack Mobile – Flutter & Laravel</h3>
+                        <h4 class="timeline-company">Way Interactive Convergence</h4>
+                        <ul class="timeline-details">
+                            <li>Développement d’une application mobile de santé en ligne publiée sur Google Play Store
+                            </li>
+                            <li>Implémentation de la messagerie temps réel, du paiement en ligne et de la
+                                visioconférence</li>
+                            <li>Contribution au backend web Laravel et à la maintenance de modules Node.js</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Exp 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2024</div>
+                        <h3 class="timeline-role">Stagiaire en développement Web & Mobile</h3>
+                        <h4 class="timeline-company">Orange Tunisie</h4>
+                        <ul class="timeline-details">
+                            <li>Développement d’une application de gestion des factures</li>
+                            <li>Application des architectures Clean, MVVM et méthodologies Agile</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Exp 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-date">2023</div>
+                        <h3 class="timeline-role">Stagiaire en développement Mobile</h3>
+                        <h4 class="timeline-company">TUNISAIR</h4>
+                        <ul class="timeline-details">
+                            <li>Développement d’API REST sécurisées avec Laravel et JWT</li>
+                            <li>Participation à la conception d’un système de réservation de billets</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title text-center">Mes Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <i class="fa-solid fa-mobile-screen-button service-icon"></i>
+                    <h3>Développement Mobile</h3>
+                    <p>Création d'applications mobiles natives et cross-platform (Flutter) fluides et intuitives.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fa-solid fa-laptop-code service-icon"></i>
+                    <h3>Développement Web</h3>
+                    <p>Conception de sites vitrines et d'applications web complexes (Laravel, Vue.js) performants et
+                        sécurisés.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Career Objective -->
+    <section id="objective" class="section callout-section">
+        <div class="container text-center">
+            <h2 class="section-title">Objectif de Carrière</h2>
+            <p class="objective-text">
+                "Concevoir et faire évoluer des solutions digitales à fort impact, en contribuant à des projets
+                innovants alliant performance, sécurité et excellente expérience utilisateur, notamment dans les
+                secteurs à forte valeur ajoutée comme la santé numérique."
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container contact-container">
+            <div class="contact-info">
+                <h2 class="section-title">Me Contacter</h2>
+                <p>N'hésitez pas à me contacter pour discuter de vos projets ou opportunités.</p>
+                <div class="social-links">
+                    <a href="https://www.linkedin.com/in/hamza-nechi/" target="_blank" aria-label="LinkedIn"><i
+                            class="fa-brands fa-linkedin"></i></a>
+                    <a href="https://github.com/HamzaNechi" target="_blank" aria-label="GitHub"><i
+                            class="fa-brands fa-github"></i></a>
+                    <a href="https://wa.me/21652907678" target="_blank" aria-label="WhatsApp"><i
+                            class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="contact-form-wrapper">
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nom complet</label>
+                        <input type="text" id="name" name="name" required placeholder="Votre nom">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="5" required
+                            placeholder="Votre message..."></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary full-width">Envoyer le message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2026 Hamza NECHI. Tous droits réservés.</p>
+            <a href="#hero" class="back-to-top">Retour en haut <i class="fa-solid fa-arrow-up"></i></a>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
