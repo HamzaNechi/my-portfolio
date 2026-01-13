@@ -185,7 +185,8 @@
                 <article class="project-card">
                     <div class="project-content">
                         <div class="project-header">
-                            <h3>Centro Assistenza Italiani</h3>
+                            <h3 class="gallery-trigger" data-project="centro-assistenza">Centro Assistenza Italiani <i
+                                    class="fa-solid fa-images gallery-icon"></i></h3>
                             <span class="project-type">Application Mobile • 2025 – Présent</span>
                         </div>
                         <p>Application mobile Flutter dédiée à la communauté italienne résidant en Tunisie.
@@ -227,7 +228,8 @@
                 <article class="project-card">
                     <div class="project-content">
                         <div class="project-header">
-                            <h3>eGRS – Gestion Redevance STEG</h3>
+                            <h3 class="gallery-trigger" data-project="egrs">eGRS – Gestion Redevance STEG<i
+                                    class="fa-solid fa-images gallery-icon"></i></h3>
                             <span class="project-type">Stage Orange Tunisie • 2024</span>
                         </div>
                         <p>Solution web & mobile de suivi intelligent de la consommation électrique. Détection
@@ -413,6 +415,31 @@
             <a href="#hero" class="back-to-top">Retour en haut <i class="fa-solid fa-arrow-up"></i></a>
         </div>
     </footer>
+
+    <!-- Project Gallery Modal -->
+    <div id="gallery-modal" class="modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close" aria-label="Fermer"><i class="fa-solid fa-xmark"></i></button>
+            <div class="modal-content">
+                <div class="gallery-slider">
+                    <button class="gallery-prev" aria-label="Image précédente"><i
+                            class="fa-solid fa-chevron-left"></i></button>
+                    <div class="gallery-image-container">
+                        <img id="gallery-img" src="" alt="Capture d'écran du projet">
+                        <div class="gallery-counter"><span id="current-img">1</span> / <span id="total-imgs">1</span>
+                        </div>
+                    </div>
+                    <button class="gallery-next" aria-label="Image suivante"><i
+                            class="fa-solid fa-chevron-right"></i></button>
+                </div>
+            </div>
+            <div class="modal-caption">
+                <h3 id="gallery-title">Titre du projet</h3>
+                <p id="gallery-description">Description des captures d'écran</p>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
