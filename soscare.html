@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IoT Platform — SOSCare | Smart Watch Medical Emergency System</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <style>
+        /* ─── CSS Variables ─── */
+        :root {
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --bg-alt: #162033;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent-primary: #38bdf8;
+            --accent-secondary: #818cf8;
+            --accent-success: #34d399;
+            --accent-danger: #ef4444;
+            --accent-glow: rgba(56, 189, 248, 0.2);
+            --gradient-main: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+            --font-heading: 'Outfit', sans-serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 20px;
+            --transition: all 0.3s ease;
+        }
+
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+
+        /* ─── Utilities ─── */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .section { padding: 80px 0; }
+        .bg-alt { background-color: var(--bg-alt); }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: var(--gradient-main);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .section-title i {
+            background: var(--gradient-main);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 1.4rem;
+        }
+
+        /* ─── Navbar ─── */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            background-color: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            padding: 20px 0;
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--font-heading); font-size: 1.5rem; font-weight: 700; }
+        .dot { color: var(--accent-primary); }
+        .nav-back {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.9rem; font-weight: 600;
+            color: var(--text-muted);
+            padding: 8px 20px;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .nav-back:hover { color: var(--accent-primary); border-color: var(--accent-primary); background: rgba(56,189,248,0.1); }
+
+        /* ─── Hero / Project Header ─── */
+        .project-hero {
+            min-height: 55vh;
+            display: flex;
+            align-items: flex-end;
+            padding-top: 100px;
+            padding-bottom: 60px;
+            position: relative;
+            overflow: hidden;
+        }
+        .project-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 60% 50% at 80% 50%, rgba(56,189,248,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 20% 80%, rgba(129,140,248,0.07) 0%, transparent 70%);
+        }
+        .project-hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .hero-inner { position: relative; z-index: 2; }
+
+        .breadcrumb {
+            display: flex; align-items: center; gap: 8px;
+            font-size: 0.85rem; color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        .breadcrumb span { color: var(--accent-primary); }
+
+        .project-badge {
+            display: inline-block;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            color: var(--accent-secondary);
+            border: 1px solid var(--accent-secondary);
+            padding: 4px 14px;
+            border-radius: 50px;
+            margin-bottom: 1.25rem;
+        }
+
+        .project-hero-title {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 1rem;
+        }
+        .project-hero-title .highlight { color: var(--accent-primary); }
+        .project-hero-title .badge-live { background: var(--accent-danger); font-size: 1rem; padding: 4px 12px; border-radius: 50px; margin-left: 16px; vertical-align: middle; }
+
+        .project-hero-subtitle {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            max-width: 700px;
+            margin-bottom: 2rem;
+        }
+
+        .project-meta-row {
+            display: flex; flex-wrap: wrap; gap: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .meta-item { display: flex; flex-direction: column; gap: 4px; }
+        .meta-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); font-weight: 600; }
+        .meta-value { font-family: var(--font-heading); font-weight: 600; font-size: 0.95rem; }
+        .status-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(56,189,248,0.1); color: var(--accent-primary);
+            padding: 4px 12px; border-radius: 50px; font-size: 0.85rem; font-weight: 600;
+        }
+        .status-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent-primary); animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+        /* ─── Summary Section ─── */
+        .summary-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        .summary-text p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        .summary-stats {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius-md);
+            padding: 1.25rem 1.5rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .stat-card:hover { border-color: var(--accent-primary); transform: translateY(-3px); }
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            background: var(--gradient-main);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .stat-label { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+
+        /* ─── Actors / Users ─── */
+        .actors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+        .actor-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius-md);
+            padding: 1.75rem;
+            transition: var(--transition);
+        }
+        .actor-card:hover { transform: translateY(-5px); border-color: var(--accent-primary); }
+        .actor-avatar {
+            width: 52px; height: 52px;
+            border-radius: 50%;
+            background: var(--gradient-main);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        .actor-card h4 { font-family: var(--font-heading); margin-bottom: 0.5rem; color: var(--text-main); }
+        .actor-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; }
+        .actor-perms {
+            margin-top: 1rem;
+            display: flex; flex-wrap: wrap; gap: 6px;
+        }
+        .perm-tag {
+            font-size: 0.7rem;
+            padding: 3px 10px;
+            border-radius: 50px;
+            background: rgba(56,189,248,0.08);
+            color: var(--accent-primary);
+            border: 1px solid rgba(56,189,248,0.2);
+        }
+
+        /* ─── Tech Stack ─── */
+        .tech-sections { display: flex; flex-direction: column; gap: 1.5rem; }
+        .tech-group {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius-md);
+            padding: 1.5rem 2rem;
+            transition: var(--transition);
+        }
+        .tech-group:hover { border-color: rgba(255,255,255,0.12); }
+        .tech-group-header {
+            display: flex; align-items: center; gap: 12px;
+            margin-bottom: 1.25rem;
+        }
+        .tech-group-icon {
+            width: 36px; height: 36px;
+            border-radius: var(--radius-sm);
+            background: rgba(56,189,248,0.1);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent-primary);
+            font-size: 0.9rem;
+        }
+        .tech-group-icon.purple { background: rgba(129,140,248,0.1); color: var(--accent-secondary); }
+        .tech-group-icon.green { background: rgba(52,211,153,0.1); color: #34d399; }
+        .tech-group-icon.orange { background: rgba(251,146,60,0.1); color: #fb923c; }
+        .tech-group-icon.pink { background: rgba(244,114,182,0.1); color: #f472b6; }
+
+        .tech-group-label {
+            font-family: var(--font-heading);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .tech-group-label small { font-size: 0.75rem; font-weight: 400; color: var(--text-muted); margin-left: 8px; }
+        .tech-chips { display: flex; flex-wrap: wrap; gap: 10px; }
+        .tech-chip {
+            display: flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+        .tech-chip:hover { background: rgba(56,189,248,0.08); color: var(--accent-primary); border-color: rgba(56,189,248,0.3); }
+
+        /* ─── Architecture Schema ─── */
+        .arch-schema {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius-lg);
+            padding: 2rem;
+            overflow-x: auto;
+        }
+        .arch-schema pre {
+            font-family: 'Courier New', monospace;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            white-space: pre;
+            margin: 0;
+        }
+
+        /* ─── Structure ─── */
+        .structure-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        .structure-tree {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+        }
+        .tree-title {
+            font-family: var(--font-heading);
+            font-size: 0.9rem;
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .tree-line {
+            display: flex; align-items: center;
+            padding: 4px 0;
+            color: var(--text-muted);
+        }
+        .tree-line .indent { margin-left: 1.5rem; }
+        .tree-line .indent2 { margin-left: 3rem; }
+        .folder { color: var(--accent-primary); margin-right: 8px; }
+        .file { color: var(--text-muted); margin-right: 8px; }
+
+        .architecture-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+        }
+        .arch-layers { display: flex; flex-direction: column; gap: 10px; }
+        .arch-layer {
+            border-radius: var(--radius-sm);
+            padding: 12px 16px;
+            display: flex; align-items: center; gap: 12px;
+            font-size: 0.9rem;
+        }
+        .arch-layer.presentation { background: rgba(56,189,248,0.08); border: 1px solid rgba(56,189,248,0.2); }
+        .arch-layer.business { background: rgba(129,140,248,0.08); border: 1px solid rgba(129,140,248,0.2); }
+        .arch-layer.data { background: rgba(52,211,153,0.08); border: 1px solid rgba(52,211,153,0.2); }
+        .arch-layer.infra { background: rgba(251,146,60,0.08); border: 1px solid rgba(251,146,60,0.2); }
+        .arch-label { font-weight: 600; font-family: var(--font-heading); min-width: 130px; }
+        .arch-label.c1 { color: var(--accent-primary); }
+        .arch-label.c2 { color: var(--accent-secondary); }
+        .arch-label.c3 { color: #34d399; }
+        .arch-label.c4 { color: #fb923c; }
+        .arch-desc { font-size: 0.82rem; color: var(--text-muted); }
+        .arch-arrow {
+            text-align: center;
+            color: rgba(255,255,255,0.15);
+            font-size: 0.75rem;
+            padding: 2px 0;
+        }
+
+        /* ─── Security ─── */
+        .security-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .security-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius-md);
+            padding: 1.75rem;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .security-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 3px; height: 100%;
+            background: var(--gradient-main);
+            transform: scaleY(0);
+            transition: transform 0.3s ease;
+        }
+        .security-card:hover::before { transform: scaleY(1); }
+        .security-card:hover { border-color: rgba(56,189,248,0.2); transform: translateX(4px); }
+        .security-card-header { display: flex; align-items: center; gap: 12px; margin-bottom: 1rem; }
+        .security-icon {
+            width: 40px; height: 40px;
+            border-radius: var(--radius-sm);
+            background: rgba(56,189,248,0.1);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--accent-primary);
+        }
+        .security-card h4 { font-family: var(--font-heading); font-size: 1.1rem; }
+        .security-card p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; }
+
+        /* ─── Features List ─── */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+        }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .feature-icon {
+            width: 32px;
+            height: 32px;
+            background: rgba(56,189,248,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+        }
+
+        /* ─── Pricing ─── */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: var(--radius-md);
+            padding: 1.75rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .pricing-card:hover { transform: translateY(-5px); border-color: var(--accent-primary); }
+        .pricing-price {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin: 1rem 0;
+        }
+        .pricing-features { text-align: left; margin-top: 1rem; }
+        .pricing-features li {
+            padding: 6px 0;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .pricing-features i { color: var(--accent-success); margin-right: 8px; width: 18px; }
+
+        /* ─── Conclusion ─── */
+        .conclusion-box {
+            background: linear-gradient(135deg, rgba(56,189,248,0.06) 0%, rgba(129,140,248,0.06) 100%);
+            border: 1px solid rgba(56,189,248,0.15);
+            border-radius: var(--radius-lg);
+            padding: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .conclusion-icon { font-size: 2.5rem; color: var(--accent-primary); margin-bottom: 1rem; }
+        .conclusion-box h3 { font-family: var(--font-heading); font-size: 1.75rem; margin-bottom: 1rem; }
+        .conclusion-box p { color: var(--text-muted); font-size: 1.05rem; max-width: 700px; margin: 0 auto 2rem; line-height: 1.8; }
+        .conclusion-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-bottom: 2rem; }
+        .outcome-tag {
+            display: flex; align-items: center; gap: 6px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.875rem;
+        }
+        .btn {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 12px 32px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            cursor: pointer;
+            font-family: var(--font-heading);
+        }
+        .btn-primary {
+            background: var(--gradient-main);
+            color: #fff;
+            box-shadow: 0 0 20px var(--accent-glow);
+            border: none;
+        }
+        .btn-primary:hover { box-shadow: 0 0 30px rgba(56,189,248,0.4); transform: translateY(-2px); }
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--accent-primary);
+            color: var(--accent-primary);
+        }
+        .btn-outline:hover { background: rgba(56,189,248,0.1); }
+
+        .section-divider {
+            height: 1px;
+            background: rgba(255,255,255,0.05);
+            margin: 0;
+        }
+
+        .footer {
+            padding: 2rem 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; color: var(--text-muted); font-size: 0.9rem; }
+        .back-to-top { display: flex; align-items: center; gap: 8px; color: var(--text-main); font-weight: 600; }
+        .back-to-top:hover { color: var(--accent-primary); }
+
+        .reveal-element { opacity: 0; transform: translateY(30px); transition: all 0.6s ease-out; }
+        .reveal-active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .project-hero-title { font-size: 2.4rem; }
+            .summary-grid { grid-template-columns: 1fr; }
+            .summary-stats { flex-direction: row; flex-wrap: wrap; }
+            .stat-card { flex: 1; min-width: 140px; }
+            .structure-layout { grid-template-columns: 1fr; }
+            .conclusion-box { padding: 2rem 1.5rem; }
+            .footer-content { flex-direction: column; gap: 1rem; text-align: center; }
+            .project-hero-title .badge-live { display: block; margin-top: 12px; margin-left: 0; width: fit-content; }
+        }
+        @media (max-width: 480px) {
+            .project-hero-title { font-size: 1.9rem; }
+            .project-meta-row { gap: 1rem; }
+            .section { padding: 60px 0; }
+        }
+
+
+        /* ─── Structure Wrapper ─── */
+.structure-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+.structure-tree {
+    background: var(--bg-card);
+    border: 1px solid rgba(255,255,255,0.05);
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.85rem;
+    overflow-x: auto;
+}
+
+.tree-line {
+    display: flex;
+    align-items: center;
+    padding: 4px 0;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    white-space: nowrap;
+}
+
+.tree-line .indent { margin-left: 1.5rem; }
+.tree-line .indent2 { margin-left: 3rem; }
+.tree-line .indent3 { margin-left: 4.5rem; }
+
+.folder { color: var(--accent-primary); margin-right: 8px; font-size: 0.85rem; }
+.file { color: var(--text-muted); margin-right: 8px; font-size: 0.85rem; }
+.tree-connector { color: rgba(255,255,255,0.2); margin-right: 6px; }
+
+/* Responsive Structure */
+@media (max-width: 768px) {
+    .structure-wrapper {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .structure-tree,
+    .services-list {
+        padding: 1rem;
+    }
+    
+    .tree-line {
+        font-size: 0.7rem;
+        white-space: normal;
+        word-break: break-all;
+    }
+    
+    .tree-line .indent { margin-left: 1rem; }
+    .tree-line .indent2 { margin-left: 2rem; }
+    .tree-line .indent3 { margin-left: 3rem; }
+}
+
+
+/* Conteneur principal de la liste des services */
+.services-list {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+}
+
+.services-list:hover {
+    border-color: rgba(56, 189, 248, 0.2);
+}
+
+/* Titre de la section services */
+.services-list .tree-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--accent-primary);
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding-bottom: 0.875rem;
+}
+
+.services-list .tree-title i {
+    font-size: 1.1rem;
+    color: var(--accent-primary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .services-list {
+        padding: 1rem;
+    }
+    
+    .services-list .tree-title {
+        font-size: 1rem;
+        margin-bottom: 1.2rem;
+        padding-bottom: 0.7rem;
+    }
+}
+
+
+/* ─── Service Card (Microservices) ─── */
+.service-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    border-radius: var(--radius-md);
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card:last-child {
+    margin-bottom: 0;
+}
+
+.service-card:hover {
+    border-color: var(--accent-primary);
+    transform: translateX(6px);
+    background: rgba(56, 189, 248, 0.04);
+}
+
+.service-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--gradient-main);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.service-card:hover::before {
+    opacity: 1;
+}
+
+.service-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 0.875rem;
+}
+
+.service-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(56, 189, 248, 0.12);
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent-primary);
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+    background: rgba(56, 189, 248, 0.25);
+    transform: scale(1.05);
+}
+
+.service-name {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text-main);
+    letter-spacing: -0.2px;
+}
+
+.service-desc {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    line-height: 1.55;
+    margin-bottom: 0.875rem;
+    padding-left: 4px;
+}
+
+.service-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.service-tech span {
+    font-size: 0.7rem;
+    font-weight: 500;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 4px 12px;
+    border-radius: 50px;
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+}
+
+.service-tech span:hover {
+    background: rgba(56, 189, 248, 0.15);
+    color: var(--accent-primary);
+    border-color: rgba(56, 189, 248, 0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .service-card {
+        padding: 1rem;
+    }
+    
+    .service-header {
+        gap: 10px;
+        margin-bottom: 0.7rem;
+    }
+    
+    .service-icon {
+        width: 34px;
+        height: 34px;
+        font-size: 0.95rem;
+    }
+    
+    .service-name {
+        font-size: 0.95rem;
+    }
+    
+    .service-desc {
+        font-size: 0.78rem;
+    }
+    
+    .service-tech span {
+        font-size: 0.65rem;
+        padding: 3px 10px;
+    }
+}
+    </style>
+</head>
+<body>
+
+    <!-- ═══ Navbar ════════════════════════════════════════ -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">HN<span class="dot">.</span></a>
+            <a href="/index.html" class="nav-back">
+                <i class="fa-solid fa-arrow-left"></i>
+                Retour au portfolio
+            </a>
+        </div>
+    </nav>
+
+    <!-- ═══ Project Hero ══════════════════════════════════ -->
+    <section class="project-hero">
+        <div class="container hero-inner">
+            <div class="breadcrumb">
+                Projets <i class="fa-solid fa-chevron-right"></i> <span>IoT Platform</span>
+            </div>
+            <div class="project-badge">Projet IoT & Médical</div>
+            <h1 class="project-hero-title">
+                Smart Watch<br><span class="highlight">Medical Emergency</span> System
+                <span class="badge-live">🚨 SOSCare</span>
+            </h1>
+            <p class="project-hero-subtitle">
+                Plateforme complète de télésurveillance médicale connectée permettant le suivi en temps réel 
+                de patients via des montres connectées, avec détection et gestion des urgences médicales.
+            </p>
+            <div class="project-meta-row">
+                <div class="meta-item">
+                    <span class="meta-label">Durée</span>
+                    <span class="meta-value">6 mois</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Équipe</span>
+                    <span class="meta-value">1 développeur</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Année</span>
+                    <span class="meta-value">2026</span>
+                </div>
+                <div class="meta-item">
+                    <span class="meta-label">Statut</span>
+                    <span class="status-badge"><span class="status-dot"></span>En cours de développement</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ 1. Résumé du Projet ═══════════════════════════ -->
+    <section class="section reveal-element" id="resume">
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-layer-group"></i>Résumé du Projet</h2>
+            <div class="summary-grid">
+                <div class="summary-text">
+                    <p>
+                        <strong>IoT Platform</strong> est une solution complète de télésurveillance médicale connectée permettant le suivi en temps réel de patients via des montres connectées. La plateforme permet la détection et la gestion des urgences médicales (SOS, chutes, anomalies cardiaques) avec une interface dédiée pour les centres d'appels et les professionnels de santé.
+                    </p>
+                    <p>
+                        L'architecture repose sur des microservices avec <strong>TCP Service</strong> pour la communication avec les montres (protocole 3G Text), <strong>API Service</strong> pour la logique métier, <strong>PostgreSQL</strong> pour le stockage et <strong>Redis</strong> pour le cache. Le frontend est développé avec <strong>Next.js 15</strong> et offre une interface temps réel pour le centre d'appels.
+                    </p>
+                    <p>
+                        Une attention particulière a été portée à la sécurité des données médicales (conformité RGPD, chiffrement AES-256, audit logs) et à la fiabilité du système (auto-reconnexion des montres, mécanismes de heartbeat, backup automatique quotidien).
+                    </p>
+                </div>
+                <div class="summary-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Environnements (Dev/Test/Prod)</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Dockerisé</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">CI/CD</div>
+                        <div class="stat-label">GitHub Actions</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ 4. Fonctionnalités Implémentées ═══════════════ -->
+    <section class="section bg-alt reveal-element" id="features">
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-list-check"></i>Fonctionnalités Clés</h2>
+            <div class="features-grid">
+                <div class="feature-item"><div class="feature-icon"><i class="fa-solid fa-bell"></i></div><span>Alerte SOS en temps réel</span></div>
+                <div class="feature-item"><div class="feature-icon"><i class="fa-solid fa-person-falling"></i></div><span>Détection de chute automatique</span></div>
+                <div class="feature-item"><div class="feature-icon"><i class="fa-solid fa-heartbeat"></i></div><span>Surveillance fréquence cardiaque</span></div>
+                <div class="feature-item"><div class="feature-icon"><i class="fa-solid fa-location-dot"></i></div><span>Localisation GPS temps réel</span></div>
+                <div class="feature-item"><div class="feature-icon"><i class="fa-solid fa-map"></i></div><span>Historique des positions (10 derniers points)</span></div>
+                <div class="feature-item"><div class="feature-icon"><i class="fa-solid fa-file-medical"></i></div><span>Dossier médical complet (antécédents, allergies, médicaments)</span></div>
+                <div class="feature-item"><div class="feature-icon"><i class="fa-solid fa-phone"></i></div><span>Centre d'appels intégré</span></div>
+                <div class="feature-item"><div class="feature-icon"><i class="fa-solid fa-credit-card"></i></div><span>Système d'abonnement (mensuel/annuel)</span></div>
+                <div class="feature-item"><div class="feature-icon"><i class="fa-solid fa-chart-line"></i></div><span>Dashboard analytics temps réel</span></div>
+                <div class="feature-item"><div class="feature-icon"><i class="fa-solid fa-file-export"></i></div><span>Export rapports PDF</span></div>
+            </div>
+        </div>
+    </section>
+
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ 5. Rôles Utilisateurs ════════════════════════ -->
+    <section class="section reveal-element" id="acteurs">
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-users"></i>Rôles & Acteurs</h2>
+            <div class="actors-grid">
+                <!--<div class="actor-card">
+                    <div class="actor-avatar"><i class="fa-solid fa-user-shield"></i></div>
+                    <h4>Administrateur</h4>
+                    <p>Gestion des utilisateurs, abonnements, paramètres système et supervision globale.</p>
+                    <div class="actor-perms"><span class="perm-tag">Gestion users</span><span class="perm-tag">Abonnements</span><span class="perm-tag">Audit logs</span></div>
+                </div>-->
+                <div class="actor-card">
+                    <div class="actor-avatar"><i class="fa-solid fa-headset"></i></div>
+                    <h4>Call Center</h4>
+                    <p>Gestion des utilisateurs, abonnements, paramètres système et supervision globale, Gestion des alertes SOS, appels entrants, localisation des patients et coordination des secours.</p>
+                    <div class="actor-perms"><span class="perm-tag">Alertes SOS</span><span class="perm-tag">Localisation</span><span class="perm-tag">Appels</span></div>
+                </div>
+                <!--<div class="actor-card">
+                    <div class="actor-avatar"><i class="fa-solid fa-user-doctor"></i></div>
+                    <h4>Professionnel de santé</h4>
+                    <p>Accès aux dossiers médicaux, suivi des signes vitaux, prescriptions.</p>
+                    <div class="actor-perms"><span class="perm-tag">Dossiers médicaux</span><span class="perm-tag">Signes vitaux</span><span class="perm-tag">Prescriptions</span></div>
+                </div>-->
+                <div class="actor-card">
+                    <div class="actor-avatar"><i class="fa-solid fa-person-walking"></i></div>
+                    <h4>Patient</h4>
+                    <p>Suivi de ses données médicales, historique des alertes, position en temps réel.</p>
+                    <div class="actor-perms"><span class="perm-tag">Mon profil</span><span class="perm-tag">Mes alertes</span><span class="perm-tag">Ma position</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ 3. Technologies Utilisées ════════════════════ -->
+    <section class="section reveal-element" id="technologies">
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-microchip"></i>Stack Technique</h2>
+            <div class="tech-sections">
+
+                <div class="tech-group">
+                    <div class="tech-group-header">
+                        <div class="tech-group-icon"><i class="fa-brands fa-node-js"></i></div>
+                        <div class="tech-group-label">Backend <small>API & Communication</small></div>
+                    </div>
+                    <div class="tech-chips">
+                        <span class="tech-chip">Node.js</span>
+                        <span class="tech-chip">Express.js</span>
+                        <span class="tech-chip">Socket.io</span>
+                        <span class="tech-chip">JWT Auth</span>
+                        <span class="tech-chip">bcrypt</span>
+                        <span class="tech-chip">axios</span>
+                    </div>
+                </div>
+
+                <div class="tech-group">
+                    <div class="tech-group-header">
+                        <div class="tech-group-icon purple"><i class="fa-solid fa-database"></i></div>
+                        <div class="tech-group-label">Base de Données <small>Stockage & Cache</small></div>
+                    </div>
+                    <div class="tech-chips">
+                        <span class="tech-chip">PostgreSQL 15</span>
+                        <span class="tech-chip">Redis (cache/sessions)</span>
+                        <span class="tech-chip">pgAdmin</span>
+                        <span class="tech-chip">pgcrypto (chiffrement)</span>
+                    </div>
+                </div>
+
+                <div class="tech-group">
+                    <div class="tech-group-header">
+                        <div class="tech-group-icon green"><i class="fa-brands fa-react"></i></div>
+                        <div class="tech-group-label">Frontend <small>Interface Utilisateur</small></div>
+                    </div>
+                    <div class="tech-chips">
+                        <span class="tech-chip">Next.js 15</span>
+                        <span class="tech-chip">TypeScript</span>
+                        <span class="tech-chip">Tailwind CSS</span>
+                        <span class="tech-chip">Leaflet (maps)</span>
+                        <span class="tech-chip">Chart.js</span>
+                    </div>
+                </div>
+
+                <div class="tech-group">
+                    <div class="tech-group-header">
+                        <div class="tech-group-icon orange"><i class="fa-brands fa-docker"></i></div>
+                        <div class="tech-group-label">Infrastructure <small>Déploiement & CI/CD</small></div>
+                    </div>
+                    <div class="tech-chips">
+                        <span class="tech-chip">Docker / Docker Compose</span>
+                        <span class="tech-chip">Nginx (reverse proxy)</span>
+                        <span class="tech-chip">GitHub Actions (CI/CD)</span>
+                        <span class="tech-chip">Ubuntu Server</span>
+                    </div>
+                </div>
+
+                <div class="tech-group">
+                    <div class="tech-group-header">
+                        <div class="tech-group-icon pink"><i class="fa-solid fa-clock"></i></div>
+                        <div class="tech-group-label">Protocole Montre <small>Communication IoT</small></div>
+                    </div>
+                    <div class="tech-chips">
+                        <span class="tech-chip">3G Text Protocol</span>
+                        <span class="tech-chip">TCP/IP (Port 9000)</span>
+                        <span class="tech-chip">Format [3G*ID*LEN*content]</span>
+                        <span class="tech-chip">Commandes: LK, UD, AL, FIND, CR, UPLOAD</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- ═══ 4. Structure du Projet ═══════════════════════════ -->
+
+
+    <div class="section-divider"></div>
+
+
+    
+    <section class="section bg-alt reveal-element" id="structure">
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-sitemap"></i>Structure du Projet</h2>
+            
+            <div class="structure-wrapper">
+                <!-- Arborescence des dossiers -->
+                <div class="structure-tree">
+                    <div class="tree-title">
+                        <i class="fa-solid fa-folder-tree"></i>
+                        Arborescence du projet
+                    </div>
+                    
+                    <div class="tree-line">
+                        <span class="folder">📁</span> iot-platform/
+                    </div>
+                    <div class="tree-line indent">
+                        <span class="tree-connector">├─</span>
+                        <span class="folder">📁</span> services/
+                    </div>
+                    <div class="tree-line indent2">
+                        &nbsp;&nbsp;<span class="tree-connector">├─</span>
+                        <span class="folder">📁</span> tcp-service/
+                    </div>
+                    <div class="tree-line indent3">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-connector">├─</span>
+                        <span class="file">📄</span> server.js
+                    </div>
+                    <div class="tree-line indent3">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-connector">├─</span>
+                        <span class="file">📄</span> api.js
+                    </div>
+                    <div class="tree-line indent3">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-connector">├─</span>
+                        <span class="folder">📁</span> controllers/
+                    </div>
+                    <div class="tree-line indent3">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-connector">└─</span>
+                        <span class="folder">📁</span> utils/
+                    </div>
+                    
+                    <div class="tree-line indent2">
+                        &nbsp;&nbsp;<span class="tree-connector">├─</span>
+                        <span class="folder">📁</span> api-service/
+                    </div>
+                    <div class="tree-line indent3">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-connector">├─</span>
+                        <span class="file">📄</span> app.js
+                    </div>
+                    <div class="tree-line indent3">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-connector">├─</span>
+                        <span class="file">📄</span> server.js
+                    </div>
+                    <div class="tree-line indent3">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-connector">├─</span>
+                        <span class="folder">📁</span> routes/
+                    </div>
+                    <div class="tree-line indent3">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-connector">├─</span>
+                        <span class="folder">📁</span> controllers/
+                    </div>
+                    <div class="tree-line indent3">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-connector">├─</span>
+                        <span class="folder">📁</span> middleware/
+                    </div>
+                    <div class="tree-line indent3">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-connector">└─</span>
+                        <span class="folder">📁</span> config/
+                    </div>
+                    
+                    <div class="tree-line indent2">
+                        &nbsp;&nbsp;<span class="tree-connector">└─</span>
+                        <span class="folder">📁</span> frontend/
+                    </div>
+                    <div class="tree-line indent3">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-connector">├─</span>
+                        <span class="folder">📁</span> app/
+                    </div>
+                    <div class="tree-line indent3">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-connector">├─</span>
+                        <span class="folder">📁</span> components/
+                    </div>
+                    <div class="tree-line indent3">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-connector">└─</span>
+                        <span class="folder">📁</span> public/
+                    </div>
+                    
+                    <div class="tree-line indent">
+                        &nbsp;&nbsp;<span class="tree-connector">├─</span>
+                        <span class="folder">📁</span> docker/
+                    </div>
+                    <div class="tree-line indent2">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-connector">├─</span>
+                        <span class="folder">📁</span> nginx/
+                    </div>
+                    <div class="tree-line indent2">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-connector">├─</span>
+                        <span class="folder">📁</span> postgres/
+                    </div>
+                    <div class="tree-line indent2">
+                        &nbsp;&nbsp;&nbsp;&nbsp;<span class="tree-connector">└─</span>
+                        <span class="folder">📁</span> pgadmin/
+                    </div>
+                    
+                    <div class="tree-line indent">
+                        <span class="tree-connector">├─</span>
+                        <span class="file">📄</span> docker-compose.yml
+                    </div>
+                    <div class="tree-line indent">
+                        <span class="tree-connector">├─</span>
+                        <span class="file">📄</span> docker-compose.prod.yml
+                    </div>
+                    <div class="tree-line indent">
+                        <span class="tree-connector">├─</span>
+                        <span class="folder">📁</span> .github/workflows/
+                    </div>
+                    <div class="tree-line indent">
+                        <span class="tree-connector">├─</span>
+                        <span class="folder">📁</span> backups/
+                    </div>
+                    <div class="tree-line indent">
+                        <span class="tree-connector">└─</span>
+                        <span class="folder">📁</span> scripts/
+                    </div>
+                </div>
+
+                <!-- Services et leurs rôles -->
+                <!-- Services et leurs rôles -->
+                <div class="services-list">
+                    <div class="tree-title">
+                        <i class="fa-solid fa-microchip"></i>
+                        Microservices
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon"><i class="fa-solid fa-network-wired"></i></div>
+                            <div class="service-name">TCP Service</div>
+                        </div>
+                        <div class="service-desc">
+                            Communication avec les montres connectées via protocole 3G Text (port 9000). 
+                            Gère le parsing des trames, les heartbeats (LK), les données GPS (UD), 
+                            les alarmes (AL) et les commandes (FIND, CR, UPLOAD).
+                        </div>
+                        <div class="service-tech">
+                            <span>Node.js</span>
+                            <span>net.Server</span>
+                            <span>Port: 9000</span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon"><i class="fa-solid fa-cloud"></i></div>
+                            <div class="service-name">API Service</div>
+                        </div>
+                        <div class="service-desc">
+                            API RESTful (port 3000) pour la gestion des utilisateurs, des dossiers médicaux, 
+                            des abonnements, des devices et des alertes. Gère l'authentification JWT, 
+                            le RBAC et la communication avec PostgreSQL.
+                        </div>
+                        <div class="service-tech">
+                            <span>Express.js</span>
+                            <span>JWT</span>
+                            <span>Port: 3000</span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon"><i class="fa-brands fa-react"></i></div>
+                            <div class="service-name">Frontend (Next.js)</div>
+                        </div>
+                        <div class="service-desc">
+                            Interface utilisateur pour le centre d'appels, le dashboard médical, 
+                            la gestion des patients et l'administration. Affichage en temps réel 
+                            des alertes et localisation GPS.
+                        </div>
+                        <div class="service-tech">
+                            <span>Next.js 15</span>
+                            <span>Tailwind CSS</span>
+                            <span>Port: 3001</span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon"><i class="fa-solid fa-database"></i></div>
+                            <div class="service-name">PostgreSQL</div>
+                        </div>
+                        <div class="service-desc">
+                            Base de données relationnelle stockant les utilisateurs, dossiers médicaux, 
+                            localisations GPS, alertes, abonnements et journaux d'audit. 
+                            Chiffrement des données sensibles avec pgcrypto.
+                        </div>
+                        <div class="service-tech">
+                            <span>PostgreSQL 15</span>
+                            <span>pgAdmin</span>
+                            <span>pgcrypto</span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon"><i class="fa-solid fa-memory"></i></div>
+                            <div class="service-name">Redis</div>
+                        </div>
+                        <div class="service-desc">
+                            Cache pour les sessions utilisateur et les données fréquemment accédées.
+                            Stockage des tokens invalides (blacklist) et gestion des files d'attente.
+                        </div>
+                        <div class="service-tech">
+                            <span>Redis 7</span>
+                            <span>Sessions</span>
+                            <span>Cache</span>
+                        </div>
+                    </div>
+                    
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                            <div class="service-name">Nginx (Reverse Proxy)</div>
+                        </div>
+                        <div class="service-desc">
+                            Reverse proxy pour le routage du trafic : API (/api/*), pgAdmin (/pgadmin/*), 
+                            frontend (/*). Load balancing et gestion SSL.
+                        </div>
+                        <div class="service-tech">
+                            <span>Nginx</span>
+                            <span>Reverse Proxy</span>
+                            <span>Port: 80</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Architecture en couches -->
+            <div style="margin-top: 2rem;">
+                <div class="structure-layout">
+                    <div class="architecture-card">
+                        <div class="tree-title" style="margin-bottom:1.25rem">
+                            <i class="fa-solid fa-layer-group"></i> Architecture en couches
+                        </div>
+                        <div class="arch-layers">
+                            <div class="arch-layer presentation">
+                                <span class="arch-label c1">Présentation</span>
+                                <span class="arch-desc">Next.js 15 — Interfaces par rôle, temps réel</span>
+                            </div>
+                            <div class="arch-arrow">↕</div>
+                            <div class="arch-layer business">
+                                <span class="arch-label c2">Métier</span>
+                                <span class="arch-desc">Express.js — Contrôleurs, services, validations</span>
+                            </div>
+                            <div class="arch-arrow">↕</div>
+                            <div class="arch-layer data">
+                                <span class="arch-label c3">Données</span>
+                                <span class="arch-desc">PostgreSQL + Redis — Stockage et cache</span>
+                            </div>
+                            <div class="arch-arrow">↕</div>
+                            <div class="arch-layer infra">
+                                <span class="arch-label c4">Infrastructure</span>
+                                <span class="arch-desc">Docker / Nginx — CI/CD avec GitHub Actions</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="architecture-card">
+                        <div class="tree-title" style="margin-bottom:1.25rem">
+                            <i class="fa-solid fa-arrows-spin"></i> Flux de communication
+                        </div>
+                        <div class="arch-layers">
+                            <div class="arch-layer presentation">
+                                <span class="arch-label c1">📱 Montre → TCP</span>
+                                <span class="arch-desc">[3G*ID*LEN*LK,steps,rolls,battery]</span>
+                            </div>
+                            <div class="arch-layer business">
+                                <span class="arch-label c2">TCP → API</span>
+                                <span class="arch-desc">POST /api/location, /api/alarm, /api/heartbeat</span>
+                            </div>
+                            <div class="arch-layer data">
+                                <span class="arch-label c3">API → Frontend</span>
+                                <span class="arch-desc">WebSocket temps réel + REST</span>
+                            </div>
+                            <div class="arch-layer infra">
+                                <span class="arch-label c4">API → Montre</span>
+                                <span class="arch-desc">[3G*ID*0004*FIND] → 🔔 Sonnerie</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ 7. Sécurité ══════════════════════════════════ -->
+    <section class="section reveal-element" id="securite">
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-shield-halved"></i>Sécurité & Conformité</h2>
+            <div class="security-grid">
+                <div class="security-card"><div class="security-card-header"><div class="security-icon"><i class="fa-solid fa-key"></i></div><h4>Authentification JWT</h4></div><p>Tokens signés, durée de vie limitée, refresh tokens httpOnly.</p></div>
+                <div class="security-card"><div class="security-card-header"><div class="security-icon"><i class="fa-solid fa-user-lock"></i></div><h4>RBAC</h4></div><p>Contrôle d'accès basé sur les rôles (Call Center, User).</p></div>
+                <div class="security-card"><div class="security-card-header"><div class="security-icon"><i class="fa-solid fa-lock"></i></div><h4>Chiffrement</h4></div><p>Données sensibles chiffrées (AES-256), mots de passe hashés (bcrypt).</p></div>
+                <div class="security-card"><div class="security-card-header"><div class="security-icon"><i class="fa-solid fa-scroll"></i></div><h4>Audit logs</h4></div><p>Traçabilité complète des actions critiques.</p></div>
+                <div class="security-card"><div class="security-card-header"><div class="security-icon"><i class="fa-solid fa-database"></i></div><h4>Backup quotidien</h4></div><p>Sauvegarde automatique PostgreSQL avec rétention 30 jours.</p></div>
+                <div class="security-card"><div class="security-card-header"><div class="security-icon"><i class="fa-solid fa-shield-virus"></i></div><h4>RGPD compliant</h4></div><p>Conformité avec les réglementations européennes sur les données de santé.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <div class="section-divider"></div>
+
+    <!-- ═══ 8. Conclusion ═════════════════════════════════ -->
+    <section class="section bg-alt reveal-element" id="conclusion">
+        <div class="container">
+            <h2 class="section-title"><i class="fa-solid fa-flag-checkered"></i>Conclusion</h2>
+            <div class="conclusion-box">
+                <div class="conclusion-icon"><i class="fa-solid fa-circle-check"></i></div>
+                <h3>Projet en développement actif</h3>
+<p>
+    Cette plateforme est en cours de développement et démontre la faisabilité d'une solution de télésurveillance médicale complète, 
+    de la communication avec les montres connectées à l'interface de gestion des urgences. 
+    L'architecture microservices permet une évolutivité future et une maintenance simplifiée.
+</p>
+                <div class="conclusion-tags">
+                    <span class="outcome-tag"><i class="fa-solid fa-check"></i> Architecture microservices</span>
+                    <span class="outcome-tag"><i class="fa-solid fa-check"></i> CI/CD automatisé</span>
+                    <span class="outcome-tag"><i class="fa-solid fa-check"></i> Conformité RGPD</span>
+                    <span class="outcome-tag"><i class="fa-solid fa-check"></i> Communication IoT</span>
+                    <span class="outcome-tag"><i class="fa-solid fa-check"></i> Temps réel</span>
+                </div>
+                <!--<div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+                    <a href="#" class="btn btn-primary"><i class="fa-brands fa-github"></i> Voir le code</a>
+                    <a href="#" class="btn btn-outline"><i class="fa-solid fa-arrow-up-right-from-square"></i> Documentation API</a>
+                </div>-->
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ Footer ════════════════════════════════════════ -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <span>© 2026 IoT Platform — Tous droits réservés</span>
+            <a href="#" class="back-to-top"><i class="fa-solid fa-arrow-up"></i> Haut de page</a>
+        </div>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('reveal-active');
+                    observer.unobserve(e.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
+        document.querySelectorAll('.reveal-element').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>

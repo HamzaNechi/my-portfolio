@@ -85,6 +85,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 'assets/projects/egrs/7.jpeg',
                 'assets/projects/egrs/8.jpeg'
             ]
+        },
+        'soscare': {
+            title: 'IoT Platform – Smart Watch Medical Emergency System',
+            description: 'Captures d\'écran de l\'application - Interface et fonctionnalités.',
+            images: [
+                'assets/projects/iot/1.png',
+                'assets/projects/iot/2.png'
+            ]
         }
         // Add more projects here as needed
     };
