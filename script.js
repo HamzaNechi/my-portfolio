@@ -99,18 +99,18 @@ document.addEventListener('DOMContentLoaded', () => {
             title: 'WIC Doctor – Application mobile e-santé',
             description: 'Captures d\'écran de l\'application mobile - Interface et fonctionnalités.',
             images: [
-                'assets/projects/wic/1.png',
-                'assets/projects/wic/2.png',
-                'assets/projects/wic/3.png',
-                'assets/projects/wic/4.png',
-                'assets/projects/wic/5.png',
-                'assets/projects/wic/6.png',
-                'assets/projects/wic/7.png',
-                'assets/projects/wic/8.png',
-                'assets/projects/wic/9.png',
-                'assets/projects/wic/10.png',
-                'assets/projects/wic/11.png',
-                'assets/projects/wic/12.png'
+                'assets/projects/wic/1.webp',
+                'assets/projects/wic/2.webp',
+                'assets/projects/wic/3.webp',
+                'assets/projects/wic/4.webp',
+                'assets/projects/wic/5.webp',
+                'assets/projects/wic/6.webp',
+                'assets/projects/wic/7.webp',
+                'assets/projects/wic/8.webp',
+                'assets/projects/wic/9.webp',
+                'assets/projects/wic/10.webp',
+                'assets/projects/wic/11.webp',
+                'assets/projects/wic/12.webp'
             ]
         }
         // Add more projects here as needed
